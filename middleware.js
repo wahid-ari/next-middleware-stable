@@ -5,13 +5,25 @@ import { NextResponse } from 'next/server'
 
 // CONDITIONAL STATEMENT
 // https://nextjs.org/docs/advanced-features/middleware#conditional-statements
-export default function middleware(request) {
+export function middleware(request) {
   // Getting cookies from the request
   const token = request.cookies.get('token')
+  const response = NextResponse.next()
+
   if (request.nextUrl.pathname.startsWith('/admin')) {
-    if(!token){
+    // console.log("admin middleware")
+    if (!token) {
       return NextResponse.redirect(new URL('/login', request.url))
     }
+  }
+
+  if (request.nextUrl.pathname.startsWith('/logout')) {
+    // console.log("logout middleware")
+    // Deleting cookies
+    response.cookies.delete('token')
+    response.cookies.delete('username')
+    response.cookies.clear()
+    NextResponse.redirect(new URL('/login', request.url))
   }
 }
 
