@@ -26,7 +26,7 @@ export default function Data() {
   const user = useContext(UserContext);
   const config = {
     headers: {
-      Authorization: `Bearer ${user.token}`,
+      Authorization: `Bearer ${user?.token}`,
     },
   };
 

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-export const GlobalContext = createContext();
+export const GlobalContext = createContext("");
 
 export function GlobalProvider({ children }) {
 
