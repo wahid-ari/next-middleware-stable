@@ -41,11 +41,16 @@ export default function middleware(request) {
   url.pathname = '/login'
   // Getting cookies from the request
   const token = request.cookies.get('token')
+  console.log("Accessing /admin")
+  console.log("checking token")
   if (!token) {
+    console.log("no token, redirect to /login")
     return NextResponse.redirect(url)
     // return NextResponse.redirect(new URL('/login', request.url))
   }
-  return NextResponse.next()
+  console.log("Token okey")
+  console.log("Continue to /admin")
+  // return NextResponse.next()
 }
 // Middleware will be invoked for every route in the app, and a custom matcher can be used to define matching filters.
 // The following is an example for a Middleware that triggers for /about/* and /dashboard/:path*,
