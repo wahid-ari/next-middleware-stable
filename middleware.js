@@ -36,10 +36,12 @@ import { NextResponse } from 'next/server'
 
 // MATCHER
 // https://nextjs.org/docs/advanced-features/middleware#matcher
-export default function middleware(request) {
-  const token = request.cookies.get('token')
+export default async function middleware(request) {
+  const token = await request.cookies.get('token')
   // console.log(token)
   // Example function to validate auth
+  // const response = NextResponse.next()
+  // console.log(response)
   if (token !== undefined) {
     return NextResponse.next()
   }
