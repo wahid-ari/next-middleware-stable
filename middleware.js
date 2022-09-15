@@ -19,6 +19,7 @@ export function middleware(request) {
       return NextResponse.redirect(url)
       // return NextResponse.redirect(new URL('/login', request.url))
     }
+    return NextResponse.next()
   }
   
   if (request.nextUrl.pathname.startsWith('/logout')) {
@@ -29,6 +30,7 @@ export function middleware(request) {
     response.cookies.clear()
     NextResponse.redirect(new URL('/login', request.url))
   }
+  
 }
 
 // // MATCHER
