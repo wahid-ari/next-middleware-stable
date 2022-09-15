@@ -16,8 +16,8 @@
     "jsonwebtoken": "^8.5.1",
     "next": "^12.2.0",
     "nookies": "^2.5.2",
-    "react": "latest",
-    "react-dom": "latest"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",

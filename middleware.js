@@ -30,16 +30,20 @@ import { NextResponse } from 'next/server'
 //     response.cookies.clear()
 //     NextResponse.redirect(new URL('/login', request.url))
 //   }
+// return NextResponse.next()
   
 // }
 
 // MATCHER
 // https://nextjs.org/docs/advanced-features/middleware#matcher
 export default function middleware(request) {
+  const url = request.nextUrl.clone()
+  url.pathname = '/login'
   // Getting cookies from the request
   const token = request.cookies.get('token')
   if (!token) {
-    return NextResponse.redirect(new URL('/login', request.url))
+    return NextResponse.redirect(url)
+    // return NextResponse.redirect(new URL('/login', request.url))
   }
   return NextResponse.next()
 }
