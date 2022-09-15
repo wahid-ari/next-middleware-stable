@@ -37,19 +37,32 @@ import { NextResponse } from 'next/server'
 // MATCHER
 // https://nextjs.org/docs/advanced-features/middleware#matcher
 export default function middleware(request) {
-  const url = request.nextUrl.clone()
-  url.pathname = '/login'
-  // Getting cookies from the request
   const token = request.cookies.get('token')
-  console.log("Accessing /admin")
-  console.log("checking token")
-  if (!token) {
-    console.log("no token, redirect to /login")
-    return NextResponse.redirect(url)
-    // return NextResponse.redirect(new URL('/login', request.url))
+  // console.log(token)
+  // Example function to validate auth
+  if (token !== undefined) {
+    return NextResponse.next()
   }
-  console.log("Token okey")
-  console.log("Continue to /admin")
+
+  const loginUrl = new URL('/login', request.url)
+  loginUrl.searchParams.set('from', request.nextUrl.pathname)
+  // console.log(loginUrl)
+
+  return NextResponse.redirect(loginUrl)
+
+  // const url = request.nextUrl.clone()
+  // url.pathname = '/login'
+  // // Getting cookies from the request
+  // const token = request.cookies.get('token')
+  // console.log("Accessing /admin")
+  // console.log("checking token")
+  // if (!token) {
+  //   console.log("no token, redirect to /login")
+  //   return NextResponse.redirect(url)
+  //   // return NextResponse.redirect(new URL('/login', request.url))
+  // }
+  // console.log("Token okey")
+  // console.log("Continue to /admin")
   // return NextResponse.next()
 }
 // Middleware will be invoked for every route in the app, and a custom matcher can be used to define matching filters.
@@ -57,5 +70,5 @@ export default function middleware(request) {
 // the custom matcher is defined in an exported config object:
 // Supports both a single string value or an array of matchers
 export const config = {
-  matcher: ['/admin/:path*', '/dashboard/:path*'],
+  matcher: ['/admin/:path*'],
 }
