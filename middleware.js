@@ -8,7 +8,6 @@ import { NextResponse } from 'next/server';
 export function middleware(request) {
   if (request.nextUrl.pathname.startsWith('/admin')) {
     const token = request.cookies.get('cookieToken');
-    console.log(token)
     if (!token) {
       return NextResponse.redirect(new URL('/login', request.url));
     }

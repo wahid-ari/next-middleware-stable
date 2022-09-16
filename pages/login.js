@@ -9,7 +9,6 @@ import Layout from '@components/Layout';
 import Input from '@components/Input';
 import Button from '@components/Button';
 import nookies from 'nookies'
-import { parseCookies, setCookie, destroyCookie } from 'nookies'
 import InputPassword from "@components/InputPassword";
 
 export default function Login() {
@@ -39,10 +38,8 @@ export default function Login() {
         user.setToken(data.token);
         localStorage.setItem("next-jwt-auth-token", data.token);
 
-        // nookies.set(null, 'cookieUsername', input.username, {})
-        // nookies.set(null, 'cookieToken', data.token, {})
-        // // Set
-        // setCookie(null, 'cookieTokens', data.token, {})
+        nookies.set(null, 'cookieUsername', input.username, {})
+        nookies.set(null, 'cookieToken', data.token, {})
         Router.push("/server");
       } else {
         setSuccess("")
@@ -90,7 +87,7 @@ export async function getServerSideProps(context) {
   // Parse
   const cookies = nookies.get(context)
 
-  if (cookies.token) {
+  if (cookies.cookieToken) {
     return {
       redirect: {
         destination: "/server"
