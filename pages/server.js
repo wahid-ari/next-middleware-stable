@@ -26,7 +26,7 @@ export default function Server() {
           <section className="text-gray-600 body-font py-8">
             <h1 className="text-center font-medium text-3xl dark:text-white mb-4">Server Protected</h1>
             <h1 className="text-center font-medium text-xl dark:text-white">Username : {user.username}</h1>
-            <h1 className="text-center font-medium text-sm dark:text-white">Token : {user.token}</h1>
+            <h1 className="text-center font-medium text-sm dark:text-white break-all">Token : {user.token}</h1>
           </section>
 
         </main>
