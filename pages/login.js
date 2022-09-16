@@ -39,10 +39,10 @@ export default function Login() {
         user.setToken(data.token);
         localStorage.setItem("next-jwt-auth-token", data.token);
 
-        nookies.set(null, 'cookieUsername', input.username, {})
-        nookies.set(null, 'cookieToken', data.token, {})
-        // Set
-        setCookie(null, 'cookieTokens', data.token, {})
+        // nookies.set(null, 'cookieUsername', input.username, {})
+        // nookies.set(null, 'cookieToken', data.token, {})
+        // // Set
+        // setCookie(null, 'cookieTokens', data.token, {})
         Router.push("/server");
       } else {
         setSuccess("")
