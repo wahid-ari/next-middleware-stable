@@ -5,11 +5,11 @@ import axios from 'axios';
 export const AxiosConfigContext = createContext();
 
 export const AxiosConfigProvider = ({ children }) => {
-  const token = nookies.get(null, 'token');
+  const token = nookies.get(null, 'cookieToken');
 
   // // can be set up here, or in page file like in pages/data.js
-  if (token.token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token.token}`;
+  if (token.cookieToken) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token.cookieToken}`;
   } else {
     axios.defaults.headers.common['Authorization'] = "";
   }

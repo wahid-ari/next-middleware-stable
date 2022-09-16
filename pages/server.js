@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
   // Parse
   const cookies = nookies.get(context)
 
-  if(!cookies.token) {
+  if (!cookies.cookieToken) {
     return {
       redirect: {
         destination: "/login"

@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
 // https://nextjs.org/docs/advanced-features/middleware#conditional-statements
 export function middleware(request) {
   if (request.nextUrl.pathname.startsWith('/admin')) {
-    const token = request.cookies.get('token');
+    const token = request.cookies.get('cookieToken');
     console.log(token)
     if (!token) {
       return NextResponse.redirect(new URL('/login', request.url));
